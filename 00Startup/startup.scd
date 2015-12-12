@@ -18,7 +18,7 @@ then uncomment the following line:
 
 */
 
-// Server.default.options.sampleRate = 48000
+// Server.default.options.sampleRate = 48000;
 
 // NOTE 2: Keep the line above where it is. Do not move it below the boot command.
 
