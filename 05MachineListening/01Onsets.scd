@@ -59,3 +59,15 @@ OSCdef (\centroid, { | msg |
 	(freq: msg [3]).play;
 }, '/tr'
 );
+
+/*
+Note: Explore other Machine Listening UGens in the Help System of 
+SuperCollider
+
+http://doc.sccode.org/Browse.html#UGens%3EAnalysis
+
+and:
+
+http://doc.sccode.org/Browse.html#UGens%3EFFT
+
+*/
