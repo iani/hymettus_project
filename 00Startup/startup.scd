@@ -23,8 +23,10 @@ then uncomment the following line:
 // NOTE 2: Keep the line above where it is. Do not move it below the boot command.
 
 (
+Server.default.outDevice = 2;
+Server.default.options.numOutputBusChannels = 22;
 Server.default.boot;
-FreqScope ();
+{ FreqScope () }.defer (0.1); // for versions < 3.7 defer is needed. In 3.7 this is fixed.
 Server.default.scope.window.bounds = Rect (0, 350, 300, 300)
 );
 
