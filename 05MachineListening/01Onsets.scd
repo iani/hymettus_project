@@ -22,4 +22,17 @@
 ~a.set (\thresh, 0.9); // very high threshold...
 
 //: On detecting an onset, get the spectral centroid 
-//:
+~a = { | thresh = 0.5 |
+	var input, fft, onsets, centroid;
+	// Get the input from the FIRST INPUT CHANNEL of your card.
+	input = In.ar (Server.default.options.numOutputBusChannels);
+	// get the fft to use for various machine listening ugens:
+	fft = FFT(LocalBuf (1024), input);
+	// Detect onsets in the input:
+	onsets = Onsets.kr (fft, thresh);
+	// Make a sound whenever an onset is found:
+	centroid = SpecCentroid.kr (fft);
+	// WhiteNoise.ar (Decay.kr (onsets)) * 0.1;
+	// Test the centroid by synthesizing a sound with it:
+	SinOsc.ar (centroid / 4, 0, Decay.kr (onsets) * 0.1);
+}.play;
