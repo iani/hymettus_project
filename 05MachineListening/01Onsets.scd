@@ -1,0 +1,25 @@
+//: Simplest version: 
+{
+	var input, onsets;
+	// Get the input from the FIRST INPUT CHANNEL of your card.
+	input = In.ar (Server.default.options.numOutputBusChannels);
+	// Detect onsets in the input:
+	onsets = Onsets.kr (FFT(LocalBuf (1024), input));
+	// Make a sound whenever an onset is found:
+	WhiteNoise.ar (Decay.kr (onsets)) * 0.1;
+}.play;
+//: Variable threshold
+~a = { | thresh = 0.5 |
+	var input, onsets;
+	// Get the input from the FIRST INPUT CHANNEL of your card.
+	input = In.ar (Server.default.options.numOutputBusChannels);
+	// Detect onsets in the input:
+	onsets = Onsets.kr (FFT(LocalBuf (1024), input), thresh);
+	// Make a sound whenever an onset is found:
+	WhiteNoise.ar (Decay.kr (onsets)) * 0.1;
+}.play;
+//:
+~a.set (\thresh, 0.9); // very high threshold...
+
+//: On detecting an onset, get the spectral centroid 
+//:
