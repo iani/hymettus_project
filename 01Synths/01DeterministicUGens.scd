@@ -39,3 +39,21 @@
 { PMOsc.ar(300, 500, 3, 0, 0.1).dup }.play;
 //:
 { PMOsc.ar(300, 600, 3, 0, 0.1).dup }.play;
+
+////////////////////////////////////////////////////////////////
+/*
+Free the previous synth before starting a new one: 
+*/
+//: Create a function that frees the previous synth.
+(
+p = { | func |
+	if (~synth.isPlaying) { ~synth.free };
+	~synth = func.play;
+	NodeWatcher register: ~synth;
+}
+);
+//: Try it out:
+p value: { WhiteNoise.ar (0.1)};
+//: Try it out:
+p value: { PinkNoise.ar (0.1)};
+//:
