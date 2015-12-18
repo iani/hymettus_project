@@ -51,7 +51,7 @@ p = { | func |
 	~synth = func.play;
 	NodeWatcher register: ~synth;
 }
-);
+); 
 //: Try it out:
 p value: { WhiteNoise.ar (0.1)};
 //: Try it out:

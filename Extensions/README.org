@@ -1,0 +1,3 @@
+Put this folder in folder "Extensions" under your user app directory.  To find the path of the directory run this:
+
+Platform.
